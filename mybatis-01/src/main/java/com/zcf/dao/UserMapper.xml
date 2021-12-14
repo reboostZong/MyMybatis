@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zcf.dao.UserMapper">
+
+    <select id="getUserList" resultType="com.zcf.pojo.User">
+        select * from mymybatis.user
+    </select>
+
+    <select id="getUserById" resultType="com.zcf.pojo.User" parameterType="_int">
+        select * from mymybatis.user where id = #{adsd}
+    </select>
+
+    <insert id="insertUser" parameterType="com.zcf.pojo.User">
+        insert into mymybatis.user (id, name, pwd) values (#{id},#{name},${pwd});
+    </insert>
+
+    <update id="updateUser" parameterType="com.zcf.pojo.User">
+        update mymybatis.user set  name=#{name}, pwd=#{pwd}  where id=#{id};
+    </update>
+
+    <delete id="deleteUserById" parameterType="_int" >
+        delete from mymybatis.user where id=#{id}
+    </delete>
+
+    <select id="getUserLike" parameterType="string" resultType="com.zcf.pojo.User">
+        select * from mymybatis.user where name like #{name}
+    </select>
+
+    <select id="getUserLike2" parameterType="string" resultType="com.zcf.pojo.User">
+        select * from mymybatis.user where name like "%"#{name}"%"
+    </select>
+
+    <insert id="insertUser2" parameterType="map">
+        insert into mymybatis.user (id, name, pwd) values (#{a},#{b},#{c});
+    </insert>
+</mapper>
