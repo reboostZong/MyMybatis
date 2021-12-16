@@ -1,14 +1,15 @@
 package com.zcf.dao;
 
 import com.zcf.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
-public interface UserDao {
+public interface UserMapper {
     List<User> getUserList();
 
-    User getUserById(int id);
+    User getUserById(@Param("uid") int id);
 
     int insertUser(User user);
 

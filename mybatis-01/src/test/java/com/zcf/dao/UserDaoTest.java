@@ -15,7 +15,7 @@ public class UserDaoTest {
     public void testGetUserList() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
 
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = mapper.getUserList();
         System.out.println(userList);
 
@@ -27,7 +27,7 @@ public class UserDaoTest {
     @Test
     public void testGetUserById() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.getUserById(1);
         System.out.println(user);
 
@@ -37,7 +37,7 @@ public class UserDaoTest {
     @Test
     public void testInsertUser() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = new User();
         user.setId(8);
         user.setName("zcf3");
@@ -54,7 +54,7 @@ public class UserDaoTest {
     @Test
     public void testUpdateUser() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = new User();
         user.setId(8);
         user.setName("zcf3");
@@ -72,7 +72,7 @@ public class UserDaoTest {
     @Test
     public void testDeleteUserById() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         int i = mapper.deleteUserById(7);
         System.out.println(i);
 
@@ -84,7 +84,7 @@ public class UserDaoTest {
     @Test
     public void testGetUserLike() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> userLike = mapper.getUserLike("%zcf%");
         System.out.println(userLike);
 
@@ -95,7 +95,7 @@ public class UserDaoTest {
     @Test
     public void testInsertUser2() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("a", 7);
         map.put("b", "zcf2");
