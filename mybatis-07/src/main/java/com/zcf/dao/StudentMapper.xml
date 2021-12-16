@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zcf.dao.StudentMapper">
+    <select id="manyToOneGetStudents" resultMap="studentTeacher">
+        select * from mymybatis.student
+    </select>
+
+    <resultMap id="studentTeacher" type="student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" javaType="teacher" select="getTeacher" column="tid">
+
+        </association>
+    </resultMap>
+
+    <select id="getTeacher" resultType="teacher" parameterType="int">
+        select * from mymybatis.teacher where id = #{tid}
+    </select>
+
+    <select id="manyToOneGetStudents2" resultMap="studentTeacher2">
+        select s.id as sid, s.NAME as sname, t.NAME as tname  from mymybatis.student s left join mymybatis.teacher t on s.tid=t.id
+    </select>
+
+    <resultMap id="studentTeacher2" type="student">
+        <id property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <association property="teacher" javaType="teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+</mapper>
