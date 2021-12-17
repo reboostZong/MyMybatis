@@ -3,5 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zcf.dao.TeacherMapper">
+    <select id="getAllTeacher" resultMap="teacherStudent">
+        select * from mymybatis.teacher
+    </select>
+
+    <resultMap id="teacherStudent" type="teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="students" javaType="ArrayList" ofType="student" select="getStudentByTeacherId" column="id"/>
+    </resultMap>
+
+    <select id="getStudentByTeacherId" resultType="student" parameterType="int">
+        select * from mymybatis.student where tid = #{tid}
+    </select>
+
+    <select id="getAllTeacher2" resultMap="teacherStudent2">
+        select t.id as tid, t.NAME as tname, s.id as sid, s.NAME as sname  from mymybatis.teacher t left join mymybatis.student s on  t.id = s.tid
+    </select>
+
+    <resultMap id="teacherStudent2" type="teacher">
+        <id property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <collection property="students" javaType="ArrayList" ofType="student" >
+            <id property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
 
 </mapper>
