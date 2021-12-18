@@ -16,5 +16,7 @@ public interface BlogMapper {
 
     List<Blog> getBlogForeach(Map map);
 
+    Blog getBlogById(int id);
+
 
 }

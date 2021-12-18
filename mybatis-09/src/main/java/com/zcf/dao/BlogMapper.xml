@@ -67,6 +67,13 @@
             </foreach>
         </where>
     </select>
+
+    <select id="getBlogById" parameterType="_int" resultType="blog">
+        select * from mymybatis.blog
+        <where>
+            id = #{id}
+        </where>
+    </select>
 </mapper>
 
 
