@@ -5,9 +5,6 @@ import com.zcf.util.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BlogTest {
 
     @Test
@@ -29,5 +26,25 @@ public class BlogTest {
 
         sqlSession.close();
 
+    }
+
+    @Test
+    public void testCache() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        Blog blogById = mapper.getBlogById(3);
+        System.out.println(blogById);
+
+        sqlSession.close();
+
+        System.out.println("==============================");
+        SqlSession sqlSession1 = MybatisUtils.getSqlSession();
+        BlogMapper mapper1 = sqlSession1.getMapper(BlogMapper.class);
+        Blog blogById1 = mapper1.getBlogById(3);
+        System.out.println(blogById1);
+
+        System.out.println(blogById == blogById1);
+
+        sqlSession1.close();
     }
 }
